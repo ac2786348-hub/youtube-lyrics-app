@@ -23,11 +23,10 @@ jobs:
         pip install --upgrade pip
         pip install buildozer cython
 
-    - name: Accept Android SDK licenses and Build
+    - name: Run Buildozer
+      env:
+        AA_LICENSE_ACCEPTED: "True"
       run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
         buildozer -v android debug
 
     - name: Upload APK Artifact
